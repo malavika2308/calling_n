@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><title>Production WebRTC</title>
+    <meta charset="UTF-8">
+    <title>Video Calling System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-container">
-        <div id="setup-screen">
-            <h1>WebRTC Call</h1>
-            <p>Your ID: <span id="my-id" class="highlight">...</span></p>
-            <div class="input-box">
-                <input type="text" id="target-id" placeholder="Enter Friend's ID">
-                <button onclick="requestCall()" class="btn-call">Call Friend</button>
-            </div>
+    <div class="main-ui">
+        <div id="setup">
+            <h1>WebRTC Pro</h1>
+            <p>Your ID: <span id="my-id">...</span></p>
+            <input type="text" id="target-id" placeholder="Enter Friend's ID">
+            <button onclick="sendCallRequest()" class="btn-primary">Call</button>
         </div>
 
-        <div id="call-screen" class="hidden">
-            <div class="video-container">
+        <div id="calling-area" class="hidden">
+            <div class="video-grid">
                 <video id="remoteVideo" autoplay playsinline></video>
-                <video id="localVideo" autoplay muted playsinline class="local-mini"></video>
+                <video id="localVideo" autoplay muted playsinline class="self-view"></video>
             </div>
-            <div class="controls">
-                <button onclick="hangUp()" class="btn-hangup">End Call</button>
-            </div>
+            <button onclick="terminateCall()" class="btn-danger">End Call</button>
         </div>
     </div>
 
     <div id="incoming-overlay" class="overlay hidden">
-        <div class="popup">
-            <h2>📞 Incoming Call</h2>
-            <p>User <span id="caller-id"></span> is calling you...</p>
-            <div class="popup-actions">
-                <button onclick="acceptCall()" class="btn-accept">Accept</button>
-                <button onclick="declineCall()" class="btn-decline">Decline</button>
+        <div class="modal">
+            <h2>Incoming Call...</h2>
+            <p>User <span id="caller-display"></span></p>
+            <div class="btn-group">
+                <button onclick="acceptCall()" class="btn-success">Accept</button>
+                <button onclick="declineCall()" class="btn-warning">Decline</button>
             </div>
         </div>
     </div>
