@@ -1,21 +1,9 @@
-body { font-family: sans-serif; background: #121212; color: white; text-align: center; margin: 0; }
-.container { padding: 20px; }
-.status-bar { font-size: 1.5rem; margin-bottom: 20px; color: #00ff88; }
-.controls { margin-bottom: 30px; }
-input { padding: 10px; border-radius: 5px; border: none; width: 200px; }
-button { padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; font-weight: bold; }
-.call-btn { background: #007bff; color: white; }
-
-.video-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-.video-box { background: #222; padding: 10px; border-radius: 10px; width: 45%; min-width: 300px; }
-video { width: 100%; border-radius: 5px; background: black; }
-
-.hidden { display: none !important; }
-.overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center;
-}
-.popup { background: #333; padding: 40px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-.popup-actions { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
-.accept-btn { background: #28a745; color: white; }
-.decline-btn { background: #dc3545; color: white; }
+.hidden { display: none; }
+.app-container { max-width: 800px; margin: 50px auto; font-family: sans-serif; text-align: center; }
+.video-wrapper { position: relative; background: #000; border-radius: 12px; overflow: hidden; height: 450px; }
+#remoteVideo { width: 100%; height: 100%; object-fit: cover; }
+.mini-video { position: absolute; bottom: 20px; right: 20px; width: 150px; border: 2px solid white; border-radius: 8px; }
+.btn-end { background: #ff4d4d; color: white; padding: 15px 30px; border: none; border-radius: 50px; margin-top: 20px; cursor: pointer; }
+.btn-call { background: #28a745; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; }
+.popup { background: white; padding: 30px; border-radius: 12px; color: #333; }
