@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Your ID: <span id="my-id">...</span></h2>
+    <input type="text" id="target-id" placeholder="Enter Friend's ID">
+    <button onclick="startCall()">Call</button>
+    
+    <div id="video-container">
+        <video id="localVideo" autoplay muted playsinline></video>
+        <video id="remoteVideo" autoplay playsinline></video>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
