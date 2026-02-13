@@ -1,6 +1,6 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
-import uuid
+import json
 
 app = FastAPI()
 
@@ -11,18 +11,25 @@ active_connections = {}
 async def websocket_endpoint(websocket: WebSocket, client_id: str):
     await websocket.accept()
     active_connections[client_id] = websocket
+    print(f"Client {client_id} connected")
+    
     try:
         while True:
-            # Receive data from one peer and forward it to the other
+            # Receive signaling data
             data = await websocket.receive_json()
-            target_id = data.get("target_id")
+            target_id = str(data.get("target_id"))
+            
+            # Forward the message to the target user
             if target_id in active_connections:
                 await active_connections[target_id].send_json({
                     "from": client_id,
                     "type": data["type"],
-                    "payload": data["payload"]
+                    "payload": data.get("payload")
                 })
     except WebSocketDisconnect:
-        del active_connections[client_id]
+        if client_id in active_connections:
+            del active_connections[client_id]
+        print(f"Client {client_id} disconnected")
 
+# Mount static files last
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
