@@ -1,33 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Video Call Pro</title>
+    <meta charset="UTF-8"><title>Production WebRTC</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Your ID: <span id="my-id">...</span></h1>
-    </div>
-
-    <div id="setup-area">
-        <input type="text" id="target-id" placeholder="Enter Friend's ID">
-        <button onclick="initiateCall()">Start Call</button>
-    </div>
-
-    <div id="call-area" class="hidden">
-        <div class="video-container">
-            <video id="remoteVideo" autoplay playsinline></video>
-            <video id="localVideo" autoplay muted playsinline class="mini"></video>
+    <div class="main-container">
+        <div id="setup-screen">
+            <h1>WebRTC Call</h1>
+            <p>Your ID: <span id="my-id" class="highlight">...</span></p>
+            <div class="input-box">
+                <input type="text" id="target-id" placeholder="Enter Friend's ID">
+                <button onclick="requestCall()" class="btn-call">Call Friend</button>
+            </div>
         </div>
-        <button onclick="endCall()" class="end-btn">End Call</button>
+
+        <div id="call-screen" class="hidden">
+            <div class="video-container">
+                <video id="remoteVideo" autoplay playsinline></video>
+                <video id="localVideo" autoplay muted playsinline class="local-mini"></video>
+            </div>
+            <div class="controls">
+                <button onclick="hangUp()" class="btn-hangup">End Call</button>
+            </div>
+        </div>
     </div>
 
     <div id="incoming-overlay" class="overlay hidden">
         <div class="popup">
-            <h2>Call from <span id="caller-id"></span></h2>
-            <button onclick="acceptCall()">Accept</button>
-            <button onclick="declineCall()" class="end-btn">Decline</button>
+            <h2>📞 Incoming Call</h2>
+            <p>User <span id="caller-id"></span> is calling you...</p>
+            <div class="popup-actions">
+                <button onclick="acceptCall()" class="btn-accept">Accept</button>
+                <button onclick="declineCall()" class="btn-decline">Decline</button>
+            </div>
         </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

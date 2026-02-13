@@ -2,6 +2,7 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
+# Store connections to relay messages between peers
 active_connections = {}
 
 @app.websocket("/ws/{client_id}")
@@ -12,7 +13,7 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
         while True:
             data = await websocket.receive_json()
             target_id = str(data.get("target_id"))
-            # Relay messages and include the sender's ID (data.from)
+            # Relay: call-request, accept-call, offer, answer, candidate, end-call
             if target_id in active_connections:
                 await active_connections[target_id].send_json({
                     "from": client_id,
