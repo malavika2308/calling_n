@@ -12,7 +12,7 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
         while True:
             data = await websocket.receive_json()
             target_id = str(data.get("target_id"))
-            # Relay all message types (offer, answer, candidate, call-request, end-call)
+            # Relay messages and include the sender's ID (data.from)
             if target_id in active_connections:
                 await active_connections[target_id].send_json({
                     "from": client_id,

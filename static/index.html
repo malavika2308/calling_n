@@ -1,40 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pro Video Call</title>
+    <title>Video Call Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <div class="header">
-            <h1>WebRTC Pro</h1>
-            <p>Your ID: <b id="my-id">...</b></p>
-        </div>
+    <div class="header">
+        <h1>Your ID: <span id="my-id">...</span></h1>
+    </div>
 
-        <div class="setup-area" id="setup-area">
-            <input type="text" id="target-id" placeholder="Enter peer ID to call">
-            <button onclick="initiateCall()" class="btn-call">Start Call</button>
-        </div>
+    <div id="setup-area">
+        <input type="text" id="target-id" placeholder="Enter Friend's ID">
+        <button onclick="initiateCall()">Start Call</button>
+    </div>
 
-        <div class="call-area hidden" id="call-area">
-            <div class="video-wrapper">
-                <video id="remoteVideo" autoplay playsinline></video>
-                <video id="localVideo" autoplay muted playsinline class="mini-video"></video>
-            </div>
-            <div class="actions">
-                <button onclick="endCall()" class="btn-end">End Call</button>
-            </div>
+    <div id="call-area" class="hidden">
+        <div class="video-container">
+            <video id="remoteVideo" autoplay playsinline></video>
+            <video id="localVideo" autoplay muted playsinline class="mini"></video>
         </div>
+        <button onclick="endCall()" class="end-btn">End Call</button>
     </div>
 
     <div id="incoming-overlay" class="overlay hidden">
         <div class="popup">
-            <h3>Incoming Call from <span id="caller-id"></span></h3>
-            <button onclick="acceptCall()" class="btn-accept">Accept</button>
-            <button onclick="declineCall()" class="btn-decline">Decline</button>
+            <h2>Call from <span id="caller-id"></span></h2>
+            <button onclick="acceptCall()">Accept</button>
+            <button onclick="declineCall()" class="end-btn">Decline</button>
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
